@@ -97,7 +97,6 @@ Pipes::Pipe Pipes::createPipe(float DIST_PIPES, float lower_x, float upper_x, fl
 
     if (low_up) {
         lower_y = 4.f;
-        // upper_y = 3.f;
         upper_y = static_cast<float>(1.5 + upper_y);
         pipe.upper_y = upper_y / 4;
     }

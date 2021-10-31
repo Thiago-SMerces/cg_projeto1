@@ -56,7 +56,20 @@ void OpenGLWindow::handleEvent(SDL_Event &event) {
         	m_gameData.m_input.reset(static_cast<size_t>(Input::Up));
       	if (event.key.keysym.sym == SDLK_DOWN || event.key.keysym.sym == SDLK_s)
         	m_gameData.m_input.reset(static_cast<size_t>(Input::Down));
-    }  
+    }
+	// Mouse events
+	if (event.type == SDL_MOUSEBUTTONDOWN) {
+    	if (event.button.button == SDL_BUTTON_LEFT)
+        	m_gameData.m_input.set(static_cast<size_t>(Input::Up));
+    	if (event.button.button == SDL_BUTTON_RIGHT)
+      		m_gameData.m_input.set(static_cast<size_t>(Input::Down));
+  	}
+  	if (event.type == SDL_MOUSEBUTTONUP) {
+    	if (event.button.button == SDL_BUTTON_LEFT)
+      		m_gameData.m_input.reset(static_cast<size_t>(Input::Up));
+    	if (event.button.button == SDL_BUTTON_RIGHT)
+      		m_gameData.m_input.reset(static_cast<size_t>(Input::Down));
+  	}
 }
 
 void OpenGLWindow::initializeGL() {
@@ -211,6 +224,23 @@ void OpenGLWindow::checkCollisions() {
 	int i = m_gameData.n_passed_pipes;
 	float dist = 0.04f;
 	do {
+		if (i != m_gameData.n_passed_pipes) {
+			const auto ldistance {glm::distance(m_bird.m_translation.x, m_pipes.m_lower_pipes[i].m_translation.x)};
+			const auto udistance {glm::distance(m_bird.m_translation.x, m_pipes.m_upper_pipes[i].m_translation.x)};
+			if ((ldistance < m_bird.m_scale * 0.85f + m_pipes.m_lower_pipes[i].m_scale * 0.85f 
+				&& (m_bird.m_translation.y < m_pipes.m_lower_pipes[i].upper_y)) ||
+				(udistance < m_bird.m_scale * 0.85f + m_pipes.m_upper_pipes[i].m_scale * 0.85f
+				&& (m_bird.m_translation.y < m_pipes.m_lower_pipes[i].upper_y))) {
+					m_gameData.m_state = State::GameOver;
+					m_gameData.final_score = m_gameData.score;
+					if (m_gameData.score > m_gameData.high_score) {
+						m_gameData.high_score = m_gameData.score;
+						m_gameData.hs = true;
+					}
+					m_restartWaitTimer.restart();
+			}
+		}
+
 		const auto lower_distanceX = m_pipes.m_lower_pipes[i].m_translation.x;
 		const auto upper_distanceX = m_pipes.m_upper_pipes[i].m_translation.x;
 
@@ -225,7 +255,6 @@ void OpenGLWindow::checkCollisions() {
 			m_restartWaitTimer.restart();
 		}
 		i -= 1;
-		// dist *= 2;
 	} while (i >= 0 && i >= m_gameData.n_passed_pipes - 1);
 
 }
