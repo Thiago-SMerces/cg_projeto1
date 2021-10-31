@@ -14,6 +14,7 @@ Atividade desenvolvida para a disciplina de computação Gráfica da UFABC - min
   A princípio o que parecia ser extremamente simples, se tornou mais complexo do que o previsto.
   
   O primeiro ponto que era desejado ao desenvolver o jogo, seria ao menos renderizar as imagens representado o pássaro, e os canos (também incluir um plano de fundo diferente). Após um tempo, foi possível carregar a imagem para ser utilizada no plano de fundo, créditos especiais a todos que desenvolveram a biblioteca de cabeçalho único STB, encontrada nesse link - https://github.com/nothings/stb/blob/master/stb_image.h
+  
   Contudo, mesmo com essa biblioteca não foi possível pela parte discente deixá-la apenas no fundo, isto é, sem sobrepor os elementos restantes da tela. Sem conseguir renderizar o plano de fundo, os outros objetos também foram deixados como formas geométricas.
   
   Deixando essa parte de lado foi prosseguido para o desenvolvimento dos objetos de maneira mais visual. Seguindo o padrão Flappy Bird, a tela, e os objetos possuem cores mais vivas, diferentes do jogo Asteroids desenvolvido como exemplo. A parte de desenhar os objetos não foi tão trabalhosa, mas ocorreu um evento inesperado.
