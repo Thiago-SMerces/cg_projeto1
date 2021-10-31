@@ -20,8 +20,24 @@ Atividade desenvolvida para a disciplina de computação Gráfica da UFABC - min
   Isso é um "problema" que deverá ser corrigido futuramente.
   
  Com os objetos desenhados, bastou fazer a parte de detecção de colisões. Foram feitas várias tentativas de utilizar os mesmos métodos que os professores deixaram disponíveis, mas mesmo tentando detectar a distância com a GLM, o raio considerado para a colisão estava muito alto (mesmo que tentasse reduzir multiplicando por uma constante, e acabou perdendo o sentido quando a constante teste ficou com um valor menor que 0.1). Portanto foi decidido uma abordagem mais simples para o jogo proposto. Calcular a distância do pássaro a qualquer um dos canos pelo eixo X *e* pelo eixo Y, assim quando as duas distâncias juntas apresentam um risco ao pássaro, a colisão é tida como verdadeira.
+
+ Um problema encontrado com essa abordagem é que a percisão de colisão é extremamente assertiva para casos de colisão frontal, já se o passáro passou da metade do cano, a detecção de colisão tem um desempenho inferior.
  
- Por fim, alguns ajustes e refinamentos foram feitos para garantir que o jogo funcionasse sem problemas (pelo menos na versão local testada, no navegador houve um pouco de lentidão no jogo).
+ Por fim, alguns ajustes e refinamentos foram feitos para garantir que o jogo funcionasse sem problemas (pelo menos na versão local testada, no navegador houve lentidão no jogo - testado no navegador microsoft edge, a velocidade com que o passáro sobe ou desce é muito inferior a de quando testada localmente).
  
  ## Resultado Final
- 
+O Resultado final ficou uma aplicação bem simples, simulando quase que inteiramente o jogo completo Flappy Bird. Como pode ser visto abaixo.
+
+ ### Tela GameOver
+
+  ![gameover](images/gameover.png)
+
+ ### Tela enquanto se está parado
+
+  ![gameover](images/rest.png)
+
+ ### Tela enquanto está jogando
+
+  ![gameover](images/playing.png)
+
+Um detalhe é que nessa versão do jogo, é possível se movimentar para cima e para baixo também invés de aguardar a derrota sem poder fazer nada.
