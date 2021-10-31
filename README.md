@@ -41,3 +41,6 @@ O Resultado final ficou uma aplicação bem simples, simulando quase que inteira
   ![gameover](images/playing.png)
 
 Um detalhe é que nessa versão do jogo, é possível se movimentar para cima e para baixo também invés de aguardar a derrota sem poder fazer nada.
+
+### Desenvolvido por
+Thiago Silva das Mercês RA - 1120181014
